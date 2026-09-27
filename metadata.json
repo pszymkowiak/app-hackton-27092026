@@ -1,0 +1,8 @@
+{
+  "name": "SiteReady",
+  "description": "Mobile-first concrete slab measurement, volume calculation, and ready-mix dispatch tracking app for contractors.",
+  "requestFramePermissions": ["camera", "geolocation"],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

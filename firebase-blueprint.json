@@ -1,0 +1,243 @@
+{
+  "entities": {
+    "Supplier": {
+      "title": "Supplier",
+      "description": "Ready-mix concrete batch plant supplier",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Supplier ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Supplier company name"
+        },
+        "pricePerYd3": {
+          "type": "number",
+          "description": "Price per cubic yard in USD"
+        },
+        "pricePerM3": {
+          "type": "number",
+          "description": "Price per cubic meter in USD"
+        },
+        "truckCapacityYd3": {
+          "type": "number",
+          "description": "Standard truck mixer capacity in yd3"
+        },
+        "truckCapacityM3": {
+          "type": "number",
+          "description": "Standard truck mixer capacity in m3"
+        },
+        "freeUnloadMinutes": {
+          "type": "number",
+          "description": "Free site unloading duration in minutes before standby fees"
+        },
+        "waitingFeePerMin": {
+          "type": "number",
+          "description": "Standby waiting fee per minute in USD"
+        },
+        "shortLoadFee": {
+          "type": "number",
+          "description": "Fee charged if a truckload is under minimum threshold"
+        },
+        "returnedConcreteFee": {
+          "type": "number",
+          "description": "Disposal fee per yd3 for returned concrete"
+        },
+        "lateCancelFee": {
+          "type": "number",
+          "description": "Fee for cancelling after batching begins"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Dispatch contact phone"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country ISO code (e.g. FR, US, CA, GB, DE, ES, BE, CH, MX, AU)"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Currency code (EUR, USD, GBP, etc.)"
+        },
+        "currencySymbol": {
+          "type": "string",
+          "description": "Currency display symbol (€, $, £)"
+        },
+        "rating": {
+          "type": "number",
+          "description": "Contractor rating out of 5"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        }
+      },
+      "required": ["id", "name", "pricePerYd3", "freeUnloadMinutes", "waitingFeePerMin"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Concrete order and delivery status record",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Order ID"
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Foreman or contractor full name"
+        },
+        "customerPhone": {
+          "type": "string",
+          "description": "Job site phone number"
+        },
+        "address": {
+          "type": "string",
+          "description": "Delivery address"
+        },
+        "accessNotes": {
+          "type": "string",
+          "description": "Access notes like gate code, ground condition, overhead wires"
+        },
+        "deliveryDate": {
+          "type": "string",
+          "description": "Scheduled delivery date"
+        },
+        "deliveryTimeSlot": {
+          "type": "string",
+          "description": "First truck delivery time slot"
+        },
+        "supplierId": {
+          "type": "string",
+          "description": "Selected supplier ID"
+        },
+        "supplierName": {
+          "type": "string",
+          "description": "Selected supplier name"
+        },
+        "country": {
+          "type": "string",
+          "description": "Destination country code (FR, US, etc.)"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Order currency code"
+        },
+        "currencySymbol": {
+          "type": "string",
+          "description": "Order currency symbol"
+        },
+        "status": {
+          "type": "string",
+          "description": "Current order status",
+          "enum": ["confirmed", "preparing", "in_progress", "completed", "cancelled"]
+        },
+        "areaSqFt": {
+          "type": "number",
+          "description": "Measured slab surface area in sq ft"
+        },
+        "areaSqM": {
+          "type": "number",
+          "description": "Measured slab surface area in sq meters"
+        },
+        "depthInches": {
+          "type": "number",
+          "description": "Slab depth in inches"
+        },
+        "depthCm": {
+          "type": "number",
+          "description": "Slab depth in cm"
+        },
+        "baseVolumeYd3": {
+          "type": "number",
+          "description": "Base volume before waste"
+        },
+        "baseVolumeM3": {
+          "type": "number",
+          "description": "Base volume in cubic meters"
+        },
+        "wastePercent": {
+          "type": "number",
+          "description": "Waste margin percentage (0 to 10)"
+        },
+        "finalVolumeYd3": {
+          "type": "number",
+          "description": "Final ordered concrete volume in yd3"
+        },
+        "finalVolumeM3": {
+          "type": "number",
+          "description": "Final ordered concrete volume in m3"
+        },
+        "manualVolumeOverride": {
+          "type": "boolean",
+          "description": "Whether user adjusted volume manually"
+        },
+        "truckloadsCount": {
+          "type": "number",
+          "description": "Total trucks scheduled"
+        },
+        "actualLeftoverYd3": {
+          "type": "number",
+          "description": "Reported leftover concrete after pour"
+        },
+        "recapCompleted": {
+          "type": "boolean",
+          "description": "Whether job recap is finalized"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Order placement timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last updated timestamp"
+        }
+      },
+      "required": ["id", "customerName", "address", "supplierId", "status", "finalVolumeYd3"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User account profile authenticated via Google",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "User UID from Firebase Auth"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Profile picture URL"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Registration timestamp"
+        }
+      },
+      "required": ["id", "email"]
+    }
+  },
+  "firestore": {
+    "/suppliers/{supplierId}": {
+      "schema": "Supplier",
+      "description": "Collection of batch plant suppliers"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of concrete delivery orders"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profiles"
+    }
+  }
+}
